@@ -1,0 +1,58 @@
+html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #181818; color: #eee; font-family: Arial, sans-serif; }
+.host { height: 100%; display: flex; flex-direction: column; }
+.host main { flex: 1; min-height: 0; }
+.host main > .t3d-studio-host { height: 100%; }
+.host-status { padding: 8px 12px; background: #5c2727; font-size: 13px; }
+.host-status button { margin-left: 8px; }
+.host-save-exit { color: #eee; background: #333; border: 1px solid #555; border-radius: 6px; padding: 7px 12px; white-space: nowrap; cursor: pointer; }
+.host-save-exit:disabled { opacity: .5; cursor: default; }
+.host-busy { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; background: #0008; }
+
+.agent-settings-overlay{position:fixed;inset:0;z-index:9999;background:#0009;backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px;color:#eee;font:13px/1.5 var(--t3d-font-sans,system-ui);color-scheme:dark}
+.agent-settings-overlay *{box-sizing:border-box}
+.agent-settings{box-sizing:border-box;width:min(600px,100%);max-height:calc(100dvh - 48px);display:flex;flex-direction:column;overflow:hidden;background:#131313;border:1px solid #303030;border-radius:16px;box-shadow:0 24px 80px #0009}
+.agent-settings header{flex:none;display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #232323;gap:16px}
+.agent-settings h2{font-size:17px;font-weight:600;letter-spacing:-.2px;margin:0}
+.agent-settings-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:4px 24px 20px;scrollbar-gutter:stable}
+.agent-settings fieldset{border:0;padding:0;margin:0;min-width:0}
+.agent-settings label{display:grid;gap:8px;margin:16px 0;color:#b8b8b8;font-size:12px;font-weight:500}
+.agent-settings input,.agent-settings select{box-sizing:border-box;width:100%;min-width:0;height:40px;background:#202020;color:#f5f5f5;border:1px solid #303030;border-radius:8px;padding:0 12px;font:400 13px var(--t3d-font-sans,system-ui);transition:border-color .15s,background .15s;color-scheme:dark}
+.agent-settings input::placeholder{color:#737373}
+.agent-settings input:hover,.agent-settings select:hover{border-color:#484848}
+.agent-settings select{appearance:none;padding-right:36px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='m4 6 4 4 4-4' fill='none' stroke='%23999999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.agent-settings option{background:#202020;color:#eee;padding:8px}
+.agent-settings button{min-height:34px;background:#242424;color:#ddd;border:1px solid #383838;border-radius:8px;padding:7px 12px;font:500 12px/1.4 var(--t3d-font-sans,system-ui);cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s}
+.agent-settings button:hover:not(:disabled){background:#333;border-color:#525252}
+.agent-settings :is(input,select,button):focus-visible{outline:2px solid #9452ff;outline-offset:2px}
+.agent-settings button:disabled,.agent-settings fieldset:disabled{opacity:.4;cursor:default}
+.agent-settings .agent-close{width:30px;min-height:30px;padding:0;border-color:transparent;background:transparent;font-size:20px;color:#999}
+.agent-settings p{color:#888;font-size:12px;line-height:1.7;margin:12px 0}
+.agent-settings p.agent-intro{color:#aaa;margin:14px 0 20px}
+.agent-settings p.agent-privacy{border-top:1px solid #232323;padding-top:16px;margin-bottom:0;font-size:11px;color:#737373}
+.agent-settings-footer{flex:none;padding:16px 24px;background:#171717;border-top:1px solid #2b2b2b}
+.agent-settings-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.agent-settings .agent-primary{background:#731dfb;border-color:#731dfb;color:white}
+.agent-settings .agent-primary:hover:not(:disabled){background:#8535ff;border-color:#9452ff}
+.agent-settings .agent-danger{margin-left:auto;background:transparent;border-color:transparent;color:#bd7c7c}
+.agent-settings .agent-danger:hover:not(:disabled){background:#3b1515;border-color:#703030;color:#f5a0a0}
+.agent-settings [role=status]{white-space:pre-wrap;overflow-wrap:anywhere;color:#bca1ed;font-size:12px;line-height:1.6}
+.agent-settings [role=status]:empty{display:none}
+.agent-settings-footer [role=status]:not(:empty){margin-top:10px}
+.agent-settings :is(.agent-settings-body,select){scrollbar-width:thin;scrollbar-color:#484848 #171717}
+.agent-settings ::-webkit-scrollbar{width:6px;height:6px}
+.agent-settings ::-webkit-scrollbar-track{background:transparent}
+.agent-settings ::-webkit-scrollbar-thumb{background:#484848;border-radius:8px}
+.agent-settings ::-webkit-scrollbar-thumb:hover{background:#626262}
+@media(max-width:600px){.agent-settings-overlay{padding:12px}.agent-settings{max-height:calc(100dvh - 24px)}.agent-settings header{padding:16px}.agent-settings-body{padding:0 16px 16px}.agent-settings-footer{padding:12px 16px}.agent-settings-actions button{flex:1 1 auto}}
+
+.agent-guide{position:absolute;z-index:80;right:24px;bottom:76px;width:min(440px,calc(100% - 48px));max-height:65vh;overflow:auto;box-sizing:border-box;padding:18px 20px;background:#171717f5;border:1px solid #333;border-radius:14px;box-shadow:0 12px 40px #0006;color:#eee;font:13px/1.6 var(--t3d-font-sans,system-ui);scrollbar-width:thin;scrollbar-color:#444 transparent}
+.agent-guide header{display:flex;align-items:center;gap:10px}.agent-guide h2{font-size:14px;font-weight:600;margin:0;flex:1}.agent-guide-badge{color:#c4b0ff;background:#731dfb30;border-radius:7px;padding:3px 7px;font-size:12px;font-weight:600}.agent-guide p{color:#aaa;margin:12px 0 16px}
+.agent-guide button,.agent-guide a{font:inherit;color:#eee;border:1px solid #3a3a3a;background:#252525;border-radius:8px;padding:7px 12px;cursor:pointer;text-decoration:none}.agent-guide .agent-guide-toggle{padding:4px 8px;border:0;background:transparent;font-size:12px;color:#aaa;white-space:nowrap}.agent-guide-actions{display:flex;gap:8px;flex-wrap:wrap}.agent-guide-actions button{background:#731dfb;border-color:#731dfb}.agent-guide-actions button:hover{background:#8535ff}.agent-guide a:hover{background:#333}.agent-guide :is(button,a,textarea,summary):focus-visible{outline:2px solid #9452ff;outline-offset:3px}
+.agent-guide details{margin-top:12px;color:#999}.agent-guide summary{cursor:pointer;font-size:12px}.agent-guide textarea{box-sizing:border-box;margin-top:8px;width:100%;height:128px;resize:vertical;background:#0e0e0e;border:1px solid #333;border-radius:8px;padding:10px;color:#bbb;font:12px/1.6 monospace}.agent-guide [role=status]{color:#c4b0ff;font-size:12px;margin-top:8px}.agent-guide [role=status]:empty{display:none}
+@media(max-width:600px){.agent-guide{right:16px;bottom:76px;width:calc(100% - 32px)}}
+
+.agent-guide.is-collapsed{width:auto;max-width:calc(100% - 32px);padding:10px 14px}.agent-guide.is-collapsed h2{font-size:13px}.agent-guide-toggle:hover{color:#fff!important;background:#333!important}
+
+/* Anchor to the viewport fullscreen control, not the editor/inspector boundary. */
+.t3d-viewport-fs-wrap > .agent-guide{right:calc(100% + 12px);bottom:0;width:min(440px,50vw);max-width:none;max-height:65vh}
+.t3d-viewport-fs-wrap > .agent-guide.is-collapsed{width:max-content;max-width:none;padding:8px 12px;min-height:40px}

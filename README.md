@@ -6,11 +6,15 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
+Use the **Use AI Agent** guide card to visit [Topview 3D Builder](https://github.com/topviewai/topview-3d-builder) and copy installation instructions for your agent. Built-in chat and API-key settings have been removed. See [Agent guide](docs/AGENT.md).
+
 This project is based on our other project, [Topview 3D Builder](https://github.com/topviewai/topview-3d-builder), which supports integration with any agent tool to generate animated 3D scenes.
 
 Build 3D scenes and adjust camera angles in ComfyUI, export images or white-model animations directly to the canvas, then use a video model to render realistic videos.
 
 Build 3D scenes, arrange characters and objects, fine-tune poses, and choreograph camera moves with timeline-based keyframe animation.
+
+The node now includes synchronized export settings and direct IMAGE / VIDEO outputs. Selecting one media type blocks the other downstream branch. Save the scene and run the workflow with the browser open to render it. See the [dual-output example](examples/topview-image-video.json). Restart ComfyUI and refresh the browser after updating.
 
 ## Installation and Updates
 
@@ -49,6 +53,9 @@ git pull --ff-only origin main
 ```
 
 ## Features
+
+Bundled editor: **@topview/3d-builder 1.0.15**. Includes grouped timeline editing,
+scene lighting, path binding fixes, and film editing. See [upstream update notes](docs/UPSTREAM.md).
 
 - **3D scene building:** place characters and objects, adjust poses, and compose your shot.
 - **Built-in assets:** 4 characters, 121 static poses, 5 primitive types, 15 camera views (including the current view), and 24 camera movement presets.

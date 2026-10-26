@@ -6,11 +6,15 @@
 
 [English](README.md) · **简体中文**
 
+通过顶部 **使用 AI Agent** 打开引导卡片，查看 [Topview 3D Builder 仓库](https://github.com/topviewai/topview-3d-builder) 并复制安装指令。插件已移除内置聊天和 API Key 设置，详见 [Agent 使用指南](docs/AGENT.md)。
+
 该项目基于我们的另一个项目 [Topview 3D Builder](https://github.com/topviewai/topview-3d-builder) 开发，支持接入任意 Agent 工具，生成 3D 场景动画。
 
 在 ComfyUI 中搭建 3D 场景、调整机位，并将图片或白模动画视频直接导出到画布，再使用视频模型渲染为真实视频。
 
 支持 3D 场景搭建、角色与物体摆放、角色姿势调节、相机运镜、时间轴和关键帧动画。
+
+节点外部提供与内部导出同步的参数表单，以及 **image / video** 两个可连接输出。选择「图片」时 VIDEO 分支停用，选择「视频」时 IMAGE 分支停用。保存场景后运行工作流即可自动渲染；运行时需保持浏览器打开。可导入 [双输出示例](examples/topview-image-video.json) 验证连接方式。更新后重启 ComfyUI 并刷新浏览器。
 
 ## 安装和更新
 
@@ -49,6 +53,8 @@ git pull --ff-only origin main
 ```
 
 ## 功能介绍
+
+内置编辑器已同步到 **@topview/3d-builder 1.0.15**，包含时间轴分组编辑、场景灯光控制、路径绑定修复及成片剪辑界面。后续同步方法见[上游更新说明](docs/UPSTREAM.md)。
 
 - **3D 场景搭建**：放置角色与物体，调整姿势、位置和构图。
 - **内置素材**：4 个角色、121 个静态姿势、5 种基础几何体、15 个机位选项（含当前视角）、24 个运镜预设。

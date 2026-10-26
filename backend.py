@@ -10,6 +10,7 @@ from PIL import Image
 from aiohttp import web
 import folder_paths
 from server import PromptServer
+from .export_backend import execute_export, register_export_routes
 
 ROOT = Path(__file__).resolve().parent
 MAX_STATE = 8 * 1024 * 1024
@@ -71,21 +72,23 @@ def atomic_write(path, data):
 
 class Topview3DScene:
     CATEGORY = "Topview"
-    RETURN_TYPES = ()
+    # Slot 0 follows the selected export type. Slot 1 supports legacy API workflows.
+    RETURN_TYPES = ('IMAGE,VIDEO', 'VIDEO')
+    RETURN_NAMES = ('image', 'video')
     FUNCTION = "execute"
 
     @classmethod
     def INPUT_TYPES(cls):
-        return {"required": {}}
+        return {"required": {"scene_state": ('STRING', {"default":"", "multiline":True}), "export_settings": ('STRING', {"default":"{}", "multiline":True})}, "hidden":{"unique_id":"UNIQUE_ID"}}
 
-    def execute(self):
-        # The launcher stores editable scene data in workflow node properties.
-        # Exported media is consumed through native LoadImage / LoadVideo nodes.
-        return ()
+    async def execute(self, scene_state, export_settings, unique_id=None):
+        result = await execute_export(parse_state(scene_state), export_settings, unique_id)
+        return (result[1], result[1]) if json.loads(export_settings).get('output') == 'video' else result
 
 
 def register_routes():
     routes = PromptServer.instance.routes
+    register_export_routes(routes)
 
     @routes.get("/topview3d/editor/{file:.*}")
     async def editor(request):
